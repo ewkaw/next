@@ -1,5 +1,6 @@
 import { Roboto_Mono } from 'next/font/google'
 import './globals.css'
+import Link from 'next/link'
 
 // Definicja czcionki roboto mono
 const robotoMono = Roboto_Mono({ subsets: ['latin'] })
@@ -15,9 +16,9 @@ export default function RootLayout({ children }) {
       {/* Przypisanie czcionki roboto mono do body ( wszystkie dzieci beda ja dziedz ) */}
       <body className={robotoMono.className}>
         <nav className="text-center my-4 space-x-4">
-          <a href="/">Start</a>
-          <a href="/tasks">Zadania</a>
-          <a href="/tasks/new">Nowe zadanie</a>
+          <Link href="/">Start</Link>
+          <Link href="/tasks">Zadania</Link>
+          <Link href="/tasks/new">Nowe zadanie</Link>
         </nav>
 
         {children}
