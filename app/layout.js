@@ -1,7 +1,8 @@
-import { Inter } from 'next/font/google'
+import { Roboto_Mono } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+// Definicja czcionki roboto mono
+const robotoMono = Roboto_Mono({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      {/* Przypisanie czcionki roboto mono do body ( wszystkie dzieci beda ja dziedziczyly ) */}
+      <body className={robotoMono.className}>{children}</body>
     </html>
   )
 }
