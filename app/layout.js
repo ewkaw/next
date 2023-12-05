@@ -12,8 +12,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* Przypisanie czcionki roboto mono do body ( wszystkie dzieci beda ja dziedziczyly ) */}
-      <body className={robotoMono.className}>{children}</body>
+      {/* Przypisanie czcionki roboto mono do body ( wszystkie dzieci beda ja dziedz ) */}
+      <body className={robotoMono.className}>
+        {children}
+
+        <footer className="text-xs italic text-center mt-6">
+          Created by Oskar
+        </footer>
+      </body>
     </html>
   )
 }
