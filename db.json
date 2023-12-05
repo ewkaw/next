@@ -1,16 +1,31 @@
 {
-    "tasks": [
-        {
-            "id": 1,
-            "title": "Kupic mleko",
-            "dueDate": "2023-12-05",
-            "completed": false
-        },
-        {
-            "id": 2,
-            "title": "Kupic jajka",
-            "dueDate": "2023-12-06",
-            "completed": false
-        }
-    ]
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Kupic mleko",
+      "dueDate": "2023-12-05",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Kupic jajka",
+      "dueDate": "2023-12-06",
+      "completed": false
+    },
+    {
+      "title": "Kupic chleb",
+      "dueDate": "2023-12-07",
+      "id": 3
+    },
+    {
+      "title": "Kupic czekolade",
+      "dueDate": "2023-12-05",
+      "id": 4
+    },
+    {
+      "title": "Kupic kawe",
+      "dueDate": "2023-12-06",
+      "id": 5
+    }
+  ]
 }
