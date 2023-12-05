@@ -1,6 +1,7 @@
 import { GeneratedAt } from "../components/GeneratedAt";
 import { H1 } from "../components/H1";
 import { StatCard } from "../components/StatCard";
+import { sleep } from "../utils/sleep";
 
 // Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
 export const dynamic = 'force-dynamic';
@@ -10,14 +11,10 @@ const listTasks = () => fetch('http://localhost:3003/tasks')
 
 const getTaskStats = () => {
     // Poczekaj 4s i po tym czasie zwroc obiekt ( Symulacja dlugiego generowania strony )
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve({
-                completed: 1,
-                todo: 2,
-                overdue: 0
-            });
-        }, 4_000);
+    return sleep(4_000, {
+        completed: 1,
+        todo: 2,
+        overdue: 0
     });
 }
 
