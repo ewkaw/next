@@ -1,8 +1,9 @@
 import Image from "next/image";
+import { H1 } from "./components/H1";
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-6 text-center">
+    <main className="p-6 text-center">
   
       {/* w HTMLowym img zdjecie bedzie zaladowane pomimo tego, ze w CSS jest ukryte  */}
       {/* hidden -> ukryj, md:block -> wysiwetlaj blokowo od breakpointu md */}
@@ -33,7 +34,7 @@ export default function Home() {
       <Image src="/todo.jpg" alt="App logo" width={480} height={320} className="mx-auto mb-6" />
 
 
-      <h1 className="text-4xl font-medium text-gray-900">Do zrobienia</h1>
+      <H1>Do zrobienia</H1>
     </main>
   )
 }
