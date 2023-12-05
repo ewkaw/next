@@ -14,8 +14,8 @@ const completeTask = taskId => fetch(`http://localhost:3003/tasks/${taskId}`, {
 })
 
 // akcja serwerowa, ktora ma ukonczyc zadanie 
-export const completeTaskAction = async taskId => {
-    await completeTask(taskId);
+export const completeTaskAction = async formData => {
+    await completeTask(formData.get('taskId'));
 
     // Mowimy nextowi, ze strona /tasks jest juz nie aktualna, wiec ja aktualizuje
     revalidatePath('/tasks');
