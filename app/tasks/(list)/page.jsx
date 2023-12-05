@@ -4,6 +4,7 @@ import { H1 } from "../../components/H1";
 import { StatCard } from "../../components/StatCard";
 import { sleep } from "../../utils/sleep";
 import { TaskStats, TasksSkeleton } from "./TaskStats";
+import { CompleteButton } from "./CompleteButton";
 
 // Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
 export const dynamic = 'force-dynamic';
@@ -32,7 +33,10 @@ export default async function TaskListPage() {
             {tasks.length > 0 && (
                 <ul className="px-6 mt-8 space-y-2">
                     {tasks.map(task => (
-                        <li key={task.id} className="border border-gray-400 p-4">
+                        // Dodajemy klase line-through tylko dla ukonczonych zadan
+                        <li key={task.id} className={`border border-gray-400 p-4 ${task.completed ? 'line-through' : ''}`}>
+                            {/* Wyswietlamy przycisk tylko wtedy, kiedy zadanie jest nieukonczone */}
+                            {!task.completed && <CompleteButton taskId={task.id} />}
                             {task.title} <time className="text-xs italic">{task.dueDate}</time>
                         </li>
                     ))}

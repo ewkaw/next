@@ -4,28 +4,37 @@
       "id": 1,
       "title": "Kupic mleko",
       "dueDate": "2023-12-05",
-      "completed": false
+      "completed": true
     },
     {
       "id": 2,
       "title": "Kupic jajka",
       "dueDate": "2023-12-06",
-      "completed": false
+      "completed": true
     },
     {
       "title": "Kupic chleb",
       "dueDate": "2023-12-07",
-      "id": 3
+      "id": 3,
+      "completed": true
     },
     {
       "title": "Kupic czekolade",
       "dueDate": "2023-12-05",
-      "id": 4
+      "id": 4,
+      "completed": true
     },
     {
       "title": "Kupic kawe",
       "dueDate": "2023-12-06",
-      "id": 5
+      "id": 5,
+      "completed": true
+    },
+    {
+      "title": "Nowe zadanie",
+      "dueDate": "2023-12-05",
+      "id": 6,
+      "completed": true
     }
   ]
 }
