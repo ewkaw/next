@@ -1,4 +1,8 @@
+import { GeneratedAt } from "../components/GeneratedAt";
 import { H1 } from "../components/H1";
+
+// Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
+export const dynamic = 'force-dynamic';
 
 const listTasks = () => fetch('http://localhost:3003/tasks')
     .then(res => res.json())
@@ -10,6 +14,8 @@ export default async function TaskListPage() {
     return (
         <>
             <H1>Lista Zadan</H1>
+
+            <GeneratedAt />
 
             {tasks.length === 0 && <p>Brak zadan do zrobienia :)</p>}
 
