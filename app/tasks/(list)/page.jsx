@@ -1,7 +1,7 @@
-import { GeneratedAt } from "../components/GeneratedAt";
-import { H1 } from "../components/H1";
-import { StatCard } from "../components/StatCard";
-import { sleep } from "../utils/sleep";
+import { GeneratedAt } from "../../components/GeneratedAt";
+import { H1 } from "../../components/H1";
+import { StatCard } from "../../components/StatCard";
+import { sleep } from "../../utils/sleep";
 
 // Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
 export const dynamic = 'force-dynamic';
