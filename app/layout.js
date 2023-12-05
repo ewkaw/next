@@ -14,6 +14,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* Przypisanie czcionki roboto mono do body ( wszystkie dzieci beda ja dziedz ) */}
       <body className={robotoMono.className}>
+        <nav className="text-center my-4 space-x-4">
+          <a href="/">Start</a>
+          <a href="/tasks">Zadania</a>
+          <a href="/tasks/new">Nowe zadanie</a>
+        </nav>
+
         {children}
 
         <footer className="text-xs italic text-center mt-6">
