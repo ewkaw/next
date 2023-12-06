@@ -54,6 +54,7 @@ export const createTaskAction = async (prevState, formData) => {
     await createTask({
         title,
         dueDate,
+        completed: false,
     });
 
     // przekieruj na strone /tasks

@@ -5,7 +5,7 @@ import { sleep } from "@/app/utils/sleep";
 const listTasks = async (query) => {
     await sleep(3000, null);
 
-    return fetch(`http://localhost:3003/tasks?q=${query || ''}`)
+    return fetch(`http://localhost:3003/tasks?q=${query || ''}&_sort=completed,dueDate&_order=asc,asc`)
         .then(res => res.json())
 };
 
