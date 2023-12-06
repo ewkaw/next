@@ -7,17 +7,16 @@ import { TaskStats, TasksSkeleton } from "./TaskStats";
 import { CompleteButton } from "./CompleteButton";
 import Link from "next/link";
 import { TaskSearchInput } from "./TaskSearchInput";
+import { TaskList } from "./TaskList";
 
 // Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
 export const dynamic = 'force-dynamic';
 
-const listTasks = (query) => fetch(`http://localhost:3003/tasks?q=${query || ''}`)
-    .then(res => res.json());
 
 // Moge oznaczyc komponnet serwerowy jako async. Dzieki czemu w ramach renderowania tego komponentu, moge poczekac ( await ) na pobranie danych i dopiero na ich podstawie wyrenderowac HTML
 export default async function TaskListPage(props) {
     // W props mam informacje o search paramasach
-    const tasks = await listTasks(props.searchParams.search);   
+    // const tasks = await listTasks(props.searchParams.search);
 
     return (
         <>
@@ -34,21 +33,11 @@ export default async function TaskListPage(props) {
 
             <TaskSearchInput />
 
-            {tasks.length === 0 && <p>Brak zadan do zrobienia :)</p>}
-
-            {tasks.length > 0 && (
-                <ul className="px-6 mt-8 space-y-2">
-                    {tasks.map(task => (
-                        // Dodajemy klase line-through tylko dla ukonczonych zadan
-                        <li key={task.id} className={`border border-gray-400 p-4 ${task.completed ? 'line-through' : ''}`}>
-                            {/* Wyswietlamy przycisk tylko wtedy, kiedy zadanie jest nieukonczone */}
-                            {!task.completed && <CompleteButton taskId={task.id} />}
-                            {task.title} <time className="text-xs italic inline-block mr-2">{task.dueDate}</time>
-                            <Link href={`/tasks/${task.id}/edit`}>Edytuj</Link>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            {/* Korzystamy z Suspense, aby poczekac doladowanie zmienionej listy zadan */}
+            {/* UWAGA: trzeba zdefiniowac prop `key`. Wtedy react wprost przy zmianie jego wartosci zadba o przerenderowanie, co w naszym przypadku bedzie oznaczac pokazanie stanu ladowania */}
+            <Suspense key={props.searchParams.search} fallback={<>Loading your tasks ...</>}>
+                <TaskList search={props.searchParams.search} />
+            </Suspense>
         </>
     );
 }
