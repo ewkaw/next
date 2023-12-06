@@ -1,9 +1,14 @@
 import { H1 } from "@/app/components/H1";
 import { UpdateTaskForm } from "./UpdateTaskForm";
+import { notFound } from "next/navigation";
 
 // Funkcjado pobrania danych konkretnego zadania
 const getTask = taskId => fetch(`http://localhost:3003/tasks/${taskId}`)
-    .then(res => res.json())
+    .then(res => {
+        if (res.status === 404) notFound();
+
+        return res.json();
+    })
 
 // W next.js definiujemy dynamiczne parametry nazywajac katalog z wykorzystaniem nawiasow kwadratowych: [taskId] <- bedziemy mieli parametr dynamiczny taskId
 export default async function EditTaskPage(props) {
