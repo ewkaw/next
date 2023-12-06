@@ -1,5 +1,6 @@
 'use server'
 
+import { sleep } from '@/app/utils/sleep';
 import { redirect } from 'next/navigation';
 
 // DTO - Data Transfer Object
@@ -29,6 +30,8 @@ export const createTaskAction = async (prevState, formData) => {
 
     const title = formData.get('title');
     const dueDate = formData.get('dueDate');
+
+    await sleep(5_000, null)
 
     // Obiekt w ktorym beda informacje o bledach w konkretnych polach
     const errors = {};
