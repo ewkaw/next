@@ -5,6 +5,7 @@ import { StatCard } from "../../components/StatCard";
 import { sleep } from "../../utils/sleep";
 import { TaskStats, TasksSkeleton } from "./TaskStats";
 import { CompleteButton } from "./CompleteButton";
+import Link from "next/link";
 
 // Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
 export const dynamic = 'force-dynamic';
@@ -37,7 +38,8 @@ export default async function TaskListPage() {
                         <li key={task.id} className={`border border-gray-400 p-4 ${task.completed ? 'line-through' : ''}`}>
                             {/* Wyswietlamy przycisk tylko wtedy, kiedy zadanie jest nieukonczone */}
                             {!task.completed && <CompleteButton taskId={task.id} />}
-                            {task.title} <time className="text-xs italic">{task.dueDate}</time>
+                            {task.title} <time className="text-xs italic inline-block mr-2">{task.dueDate}</time>
+                            <Link href={`/tasks/${task.id}/edit`}>Edytuj</Link>
                         </li>
                     ))}
                 </ul>
