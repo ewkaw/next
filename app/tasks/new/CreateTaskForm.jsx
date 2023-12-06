@@ -35,7 +35,7 @@ const FormFields = ({ state }) => {
                 // Dobra praktyka to wylaczanie inputow podczas zatwierdzania 
                 disabled={pending}
                 // Dodajemy czerowna ramke albo szara ramke w zaleznosci od tego czy jest blad dla pola title
-                className={`border p-3 w-full ${state?.errors?.title ? 'error' : 'border-gray-400'}`}
+                className={`border p-3 w-full ${state?.errors?.title && !pending ? 'error' : 'border-gray-400'}`}
                 // Przyklad z wykorzystaniem biblioteki classnames https://www.npmjs.com/package/classnames
                 // className={classNames('border p-3 w-full', {
                 //   'border-red-500': state?.errors?.title,
@@ -43,7 +43,7 @@ const FormFields = ({ state }) => {
                 // })}
                 placeholder="Co trzeba zrobic?"
             />
-            {state?.errors?.title && (
+            {state?.errors?.title && !pending && (
                 <p className="text-red-500 mt-2">
                     {/* Wyswietlanie komunikatu o bledzie dla konkretnego pola */}
                     {state.errors.title}
@@ -58,10 +58,10 @@ const FormFields = ({ state }) => {
                 // Dobra praktyka to wylaczanie inputow podczas zatwierdzania 
                 disabled={pending}
                 // Dodajemy czerowna ramke albo szara ramke w zaleznosci od tego czy jest blad dla pola dueDate
-                className={`border p-3 w-full ${state?.errors?.dueDate ? 'border-red-500' : 'border-gray-400'}`}
+                className={`border p-3 w-full ${state?.errors?.dueDate && !pending ? 'border-red-500' : 'border-gray-400'}`}
                 placeholder="Do kiedy trzeba zrobic?"
             />
-            {state?.errors?.dueDate && (
+            {state?.errors?.dueDate && !pending && (
                 <p className="text-red-500 mt-2">
                     {/* Wyswietlanie komunikatu o bledzie dla konkretnego pola */}
                     {state.errors.dueDate}
