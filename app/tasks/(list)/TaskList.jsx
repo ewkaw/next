@@ -17,7 +17,7 @@ const listTasks = async (query, hideCompleted) => {
     return sql`SELECT * FROM tasks`
         .then(res => res.rows)
         // Przefiltruj je bazujac na argumentach
-        .then(tasks => tasks.filter(task => task.title.toLowerCase().includes(query.toLowerCase())))
+        .then(tasks => tasks.filter(task => task.title.toLowerCase().includes(query?.toLowerCase() || '')))
         .then(tasks => {
             if (!hideCompleted) return tasks;
 
