@@ -30,17 +30,23 @@ export const createTaskAction = async (prevState, formData) => {
     const title = formData.get('title');
     const dueDate = formData.get('dueDate');
 
+    // Obiekt w ktorym beda informacje o bledach w konkretnych polach
+    const errors = {};
+
     // Walidacja -> Mozemy zwrocic nowy stan formularza, w tym wypadku stan z informacja o bledach
     if (!title) {
-        return {
-            errorMessage: 'Nazwa zadania nie moze byc pusta!'
-        };
+        // Ustawiamy komunikat bledu dla konkretnego pola
+        errors['title'] =  'Nazwa zadania nie moze byc pusta!';
     }
     if (!dueDate) {
-        return {
-            errorMessage: 'Termin wykonania zadania nie moze byc pusty!'
-        };
+        errors['dueDate'] =  'Termin wykonania zadania nie moze byc pusty!';
     }
+
+    // Sprawdzamy czy obiekt errors ma wiecej pol niz 0 ( czy sa bledy ? )
+    const hasErrors = Object.keys(errors).length > 0;
+
+    // Jesli bledy, to zwroc nowy stan formularza z informacja o bledach
+    if (hasErrors) return { errors }
 
     await createTask({
         title,
