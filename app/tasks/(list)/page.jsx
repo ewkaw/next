@@ -8,6 +8,7 @@ import { CompleteButton } from "./CompleteButton";
 import Link from "next/link";
 import { TaskSearchInput } from "./TaskSearchInput";
 import { TaskList } from "./TaskList";
+import { HideCompletedTasksFilter } from "./HideCompletedTasksFilter";
 
 // Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
 export const dynamic = 'force-dynamic';
@@ -33,10 +34,17 @@ export default async function TaskListPage(props) {
 
             <TaskSearchInput />
 
+            <div className="text-right">
+                <HideCompletedTasksFilter />
+            </div>
+
             {/* Korzystamy z Suspense, aby poczekac doladowanie zmienionej listy zadan */}
             {/* UWAGA: trzeba zdefiniowac prop `key`. Wtedy react wprost przy zmianie jego wartosci zadba o przerenderowanie, co w naszym przypadku bedzie oznaczac pokazanie stanu ladowania */}
             <Suspense key={props.searchParams.search} fallback={<>Loading your tasks ...</>}>
-                <TaskList search={props.searchParams.search} />
+                <TaskList
+                    search={props.searchParams.search}
+                    hideCompleted={props.searchParams.hideCompleted}
+                />
             </Suspense>
         </>
     );

@@ -2,16 +2,20 @@ import Link from "next/link"
 import { CompleteButton } from "./CompleteButton"
 import { sleep } from "@/app/utils/sleep";
 
-const listTasks = async (query) => {
-    await sleep(3000, null);
+const listTasks = async (query, hideCompleted) => {
+    // TO simulate long request for showing loader
+    // await sleep(3000, null);
 
-    return fetch(`http://localhost:3003/tasks?q=${query || ''}&_sort=completed,dueDate&_order=asc,asc`)
+    // Jesli ma ukryc ukonczone, to popros json-server, zeby zwrocil takie zadania, ktore maja pole completed = false
+    const completeFilter = hideCompleted ? '&completed=false' : '';
+
+    return fetch(`http://localhost:3003/tasks?q=${query || ''}&_sort=completed,dueDate&_order=asc,asc${completeFilter}`)
         .then(res => res.json())
 };
 
 
-export const TaskList = async ({ search }) => {
-    const tasks = await listTasks(search);
+export const TaskList = async ({ search, hideCompleted }) => {
+    const tasks = await listTasks(search, hideCompleted);
 
     return (
         <>
