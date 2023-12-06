@@ -6,16 +6,18 @@ import { sleep } from "../../utils/sleep";
 import { TaskStats, TasksSkeleton } from "./TaskStats";
 import { CompleteButton } from "./CompleteButton";
 import Link from "next/link";
+import { TaskSearchInput } from "./TaskSearchInput";
 
 // Wymuszenie aby strona byla generowana na zadanie ( next.js domyslnie bedzie probowal wygenerowac strony statyczne )
 export const dynamic = 'force-dynamic';
 
-const listTasks = () => fetch('http://localhost:3003/tasks')
+const listTasks = (query) => fetch(`http://localhost:3003/tasks?q=${query || ''}`)
     .then(res => res.json());
 
 // Moge oznaczyc komponnet serwerowy jako async. Dzieki czemu w ramach renderowania tego komponentu, moge poczekac ( await ) na pobranie danych i dopiero na ich podstawie wyrenderowac HTML
-export default async function TaskListPage() {
-    const tasks = await listTasks();   
+export default async function TaskListPage(props) {
+    // W props mam informacje o search paramasach
+    const tasks = await listTasks(props.searchParams.search);   
 
     return (
         <>
@@ -25,9 +27,12 @@ export default async function TaskListPage() {
 
             {/* Czekajac na wygenerowanie i pobranie <TaskStats /> wyswietl <TasksSkeleton /> */}
             {/* UWAGA: Suspense jest z react!  */}
-            <Suspense fallback={<TasksSkeleton />}>
+            {/* Komentuje, poniewaz dlugo trwaladowanie tej sekcji  */}
+            {/* <Suspense fallback={<TasksSkeleton />}>
                 <TaskStats />
-            </Suspense>
+            </Suspense> */}
+
+            <TaskSearchInput />
 
             {tasks.length === 0 && <p>Brak zadan do zrobienia :)</p>}
 
